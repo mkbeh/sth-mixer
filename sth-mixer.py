@@ -126,12 +126,6 @@ class CoinMixer(object):
         with open(file, 'a') as file:
             file.write(f'{addr}:{passwd}\n')
 
-    # def create_accounts(self, file, quantity, test):
-    #     for _ in range(quantity):
-    #         paswd = self.generator.mix()
-    #         addr = self.smartholdem.create_account(paswd)
-    #         self.write_account_creds(file, addr, paswd)
-
     def create_accounts(self, file, quantity):
         for _ in range(quantity):
             paswd = self.generator.mix()
