@@ -164,32 +164,14 @@ class CoinMixer(object):
                                                           DataForMixing.mix_accs_quantities))
         return DataForMixing
 
-    def send_txs(self, lines):
-        for line in lines:
-            print(line)
-
-    def prepare_and_send_txs(self, file, txs_sizes_seq):
-        total_processes = 0
-
-        for i in range(0, len(txs_sizes_seq), self.max_num_processes):
-            if total_processes == self.max_num_processes:
-                break
-
-            total_processes += 1
-
-        total_ranges = utils.split_on_ranges_by_step(0, len(txs_sizes_seq), total_processes)
-        lock = RLock()
-        line_num = 1
-
-        for range_ in total_ranges:
-            self.send_txs(utils.read_file_from_specific_line(file, range_, lock))
-            line_num += 1
+    def send_txs(self):
+        pass
 
     def mix(self):
         data_for_mixing = self.prepare_data_for_mixing()
-        print(data_for_mixing.iters)
-        print(data_for_mixing.mix_accs_quantities)
-        print(data_for_mixing.quantities_coins_for_txs)
+
+        for iter in data_for_mixing.iters:
+            pass
 
     def run(self):
         self.files_exists(self.files_ways_lst)
